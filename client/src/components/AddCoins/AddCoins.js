@@ -31,9 +31,10 @@ class AddCoins extends Component {
   }
 
   handleClick = () => {
-  	this.setState({
-  		coinList: 
-  	})
+  	this.setState({ 
+	  coinList: this.state.coinList.concat(this.state.selectedCoins)
+	})
+	console.log(this.state.coinList);
   }
 
 	render() {
