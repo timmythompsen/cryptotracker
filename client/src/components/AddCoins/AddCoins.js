@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import axios from "axios";
 import SearchBar from './search_bar';
+import NumberFormat from "react-number-format";
 
 class AddCoins extends Component {
 	constructor(props) {
@@ -25,8 +26,14 @@ class AddCoins extends Component {
       .then(res => {
         const cryptos = res.data;
         console.log(cryptos);
-        this.setState({ coinList: cryptos });
+        this.setState({ selectedCoins: cryptos });
       });
+  }
+
+  handleClick = () => {
+  	this.setState({
+  		coinList: 
+  	})
   }
 
 	render() {
@@ -37,16 +44,22 @@ class AddCoins extends Component {
 			<div>
 				<h1>Choose Coins to add to your dashboard</h1>
 				<SearchBar onSearchTermChange={this.coinSearch} />
-				{Object.keys(this.state.coinList).map(key => (
-					
-					<table id="coinList-container">
-						<tr>
-							<th>{key}</th>
-							<th>{this.state.coinlist[key].CoinName}</th>
-							<th><input type="checkbox" /></th>
-						</tr>
-					</table>	
-				))}
+				{Object.keys(this.state.selectedCoins).map(key => (
+		            <div id="crypto-container">
+		            <button className="btn btn-default"
+				       onClick={this.props.handleClick}>Add Coin</button>
+		              <span className="left">{key}</span>
+		              <span className="right">
+		                <NumberFormat
+		                  value={this.state.selectedCoins[key].USD}
+		                  displayType={"text"}
+		                  decimalPrecision={2}
+		                  thousandSeparator={true}
+		                  prefix={"$"}
+		                />
+		              </span>
+		            </div>
+		          ))}
 			</div>
 		)
 	}
@@ -65,7 +78,5 @@ class AddCoins extends Component {
 
 
 }
-
-
 
 export default AddCoins;
