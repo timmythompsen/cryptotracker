@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import "./contact.css";
 
 class ContactUs extends Component {
 	state = { showing: true };
