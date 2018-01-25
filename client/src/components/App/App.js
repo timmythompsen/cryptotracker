@@ -130,9 +130,14 @@ class App extends Component {
     return (
       <div className="App">
         
+        <div className="banner">
+          <img src={cryptoLogo} alt="CryptoLogo" width="100%" height="200px"/>
+        </div>
+
+
         <AppBar 
           iconClassNameRight="muidocs-icon-navigation-expand-more"
-          title= "Crypto-Tracker"
+          title= "I'm buying bitcoin you peasant"
           onLeftIconButtonClick={this.handleToggle}
         />
 
@@ -170,6 +175,12 @@ class App extends Component {
           {content} {/* this is main content area */}
         </Paper>
 
+        <div className="banner">
+          <img src={cryptoLogo} alt="CryptoLogo" width="100%" height="200px"/>
+        </div>
+
+
+
       </div> // close div className="App"
     ); // close return
   } // close class App extends Component
@@ -191,5 +202,11 @@ class App extends Component {
 function mapStateToProps({ auth }) {
   return {auth};
 }
+
+        <div className="banner">
+          <img src={cryptoLogo} alt="CryptoLogo" width="100%" height="200px"/>
+        </div>
+
+
 
 export default connect(mapStateToProps, actions) (App);
