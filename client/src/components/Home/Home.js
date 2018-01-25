@@ -3,7 +3,7 @@ import RaisedButtonSimple from "../Buttons/RaisedButton.js";
 import axios from "axios";
 import NumberFormat from "react-number-format";
 import { Toolbar, ToolbarTitle } from "material-ui/Toolbar";
-import "./Home.css";
+// import "./Home.css";
 
 class Home extends Component {
 

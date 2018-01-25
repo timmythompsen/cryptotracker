@@ -12,22 +12,37 @@ body {
 
 .App {
   margin-top: 10px;
+  /*width: 300px;*/
 }
 
 div#crypto-container {
-  background:white;
-  width: 70%;
-  margin: 0 auto 4px auto;
-  padding: 1em;
-  box-shadow: 1px 1px 0 lightgrey;
+  background: white;
+  width: 60%;
+  margin: 0 auto 0 auto;
+  padding: 50px;
+  box-shadow: 10px 10px 5px lightgrey;
+  font-size: 30px;
+
 }
 
-title {
-  font-size: 10px;
+.Home{
+  font-size: 50px;
+  color: navy;
+  margin: 5px;
+  background: darkgrey;
 }
+
+
+
+.banner img {
+  width: 100%;
+  /*margin: 0 25px 0 80px;*/
+}
+
 
 span.left {
   font-weight: bold;
+  float: left;
 }
 
 span.right {
@@ -69,5 +84,8 @@ img {
   text-align: left;
   margin-left: 30px;
 }
+
+
+
 
 
