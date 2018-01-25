@@ -18,17 +18,16 @@ body {
 div#crypto-container {
   background: white;
   width: 60%;
-  margin: 0 auto 0 auto;
+  margin: 0 auto 10px auto;
   padding: 50px;
-  box-shadow: 10px 10px 5px lightgrey;
+  box-shadow: 10px 5px 1px lightgrey;
   font-size: 30px;
-
 }
 
-.Home{
-  font-size: 50px;
+.Home {
+  font-size: 14px;
   color: navy;
-  margin: 5px;
+  margin: 10px;
   background: darkgrey;
 }
 
@@ -65,10 +64,10 @@ img {
 }
 
 /*logo in navbar*/
-.logo img {
+/*.logo img {
   height: 65px;
   width: 300px;
-}
+}*/
 
 .faq-question {
   font-size: 36px;
@@ -99,6 +98,16 @@ font-size: 24px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
+.regulations {
+  color: pink;
+  text-align: left;
+  margin-left: 25px;
+  margin-right: 30px;
+  
+}
+
+
 
 
 

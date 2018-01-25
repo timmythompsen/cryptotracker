@@ -10,6 +10,7 @@ class Footer extends Component {
 		return(
 			<footer>
      			<p>Copyright © 2018. Brian, Tim & Gail</p>
+     			
   			</footer>
 
 		)

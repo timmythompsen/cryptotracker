@@ -44,8 +44,8 @@ class Home extends Component {
 	              </span> {/* close span className="right" */}
             	</div> // close div id="crypto-container"
           ))} {/* close map(key=>; then map(key =>(; then {Object.keys */}
-          <RaisedButtonSimple handleClick={this.updateData} />
-		</div>
+          	<RaisedButtonSimple handleClick={this.updateData} />
+			</div>
 		) // close return(
 	} // close render() {}
 
