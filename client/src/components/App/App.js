@@ -18,7 +18,7 @@ import { Toolbar, ToolbarTitle } from "material-ui/Toolbar";
 import "./App.css";
 import axios from "axios";
 import NumberFormat from "react-number-format";
-import NAVBar from "../NAVBar.js";
+import NAVBar from "../NAVBar/NAVBar.js";
 import RaisedButtonSimple from "../Buttons/RaisedButton.js";
 import ArrowDropRight from "material-ui/svg-icons/navigation-arrow-drop-right";
 import backgroundImage from "../../images/charnaTop.jpg";
@@ -123,8 +123,8 @@ class App extends Component {
         content = <ContactUs />;
         break;
 
-      //default:
-        //content = <h1>Waiting</h1>;
+      default:
+        content = <Home />;
     }
 
     return (
@@ -167,33 +167,12 @@ class App extends Component {
         </Drawer>
 
         <Paper style={paperStyle} zDepth={5}>
-          {content}
+          {content} {/* this is main content area */}
         </Paper>
 
-        <Paper style={paperStyle} zDepth={5}>
-          <Toolbar style={{ justifyContent: 'center'}}>
-            <ToolbarTitle text="Current Cryptocurrency Quotes" />
-          </Toolbar>  
-          <br />
-          {Object.keys(this.state.cryptos).map(key => (
-            <div id="crypto-container">
-              <span className="left">{key}</span>
-              <span className="right">
-                <NumberFormat
-                  value={this.state.cryptos[key].USD}
-                  displayType={"text"}
-                  decimalPrecision={2}
-                  thousandSeparator={true}
-                  prefix={"$"}
-                />
-              </span>
-            </div>
-          ))}
-          <RaisedButtonSimple handleClick={this.updateData} />
-        </Paper>  
-      </div>
-    );
-  }
+      </div> // close div className="App"
+    ); // close return
+  } // close class App extends Component
 
   updateData = () => {
     console.log("updateData funtion called");
@@ -206,8 +185,8 @@ class App extends Component {
         console.log(cryptos);
         this.setState({ cryptos: cryptos });
       });
-  };
-}
+  }; //close updateData)()
+} // close class App extends Component
 
 function mapStateToProps({ auth }) {
   return {auth};

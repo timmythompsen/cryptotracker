@@ -2,15 +2,6 @@ import React, { Component } from "react";
 import TextField from "material-ui/TextField";
 import CalcButton from "./CalcButton";
 import Example from "./Example";
-import Paper from "material-ui/Paper";
-
-const paperStyle = {
-  height: "85%",
-  width: "85%",
-  margin: "7%",
-  textAlign: "center",
-  display: "inline-block"
-};
 
 class XBTFairValueCalc extends Component {
   state = {
@@ -56,7 +47,7 @@ class XBTFairValueCalc extends Component {
 
   render() {
     return (
-      <Paper style={paperStyle} zDepth={5}>
+
         <form>
           <h1>Bitcoin Futures Fair Value Calculator</h1>
           <TextField
@@ -119,7 +110,7 @@ class XBTFairValueCalc extends Component {
             floatingLabelFixed
           />
           <br />
-          <CalcButton label="Calculate" handleClick={this.calcData} />
+          <CalcButton label="Calculate" handleClick={this.calcData}/>
           <div>
             Calc Results go here:
             {this.calcData.fvCalcResults}
@@ -131,7 +122,7 @@ class XBTFairValueCalc extends Component {
             />
           </div>
         </form>
-      </Paper>  
+
     );
   }
 
