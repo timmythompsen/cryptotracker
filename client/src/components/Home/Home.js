@@ -7,6 +7,7 @@ import CryptoChart from "../CryptoChart/CryptoChart.js";
 import Paper from "material-ui/Paper";
 import backgroundImage from "../../images/charnaTop.jpg";
 
+
 // import "./Home.css";
 
 const paperStyle = {
@@ -38,6 +39,7 @@ class Home extends Component {
 	render() {
 		return(
 			<div className="Home">
+
 				<div className="coinList">
 		          <Toolbar style={{ justifyContent: 'center'}}>
 		            <ToolbarTitle text="Current Cryptocurrency Quotes" />
@@ -69,7 +71,6 @@ class Home extends Component {
 				</Paper>
 
 			</div> // close className="Home"
-
 
 		) // close return(
 	} // close render() {}
