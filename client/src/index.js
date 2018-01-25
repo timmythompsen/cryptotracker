@@ -6,8 +6,8 @@ import { createStore, applyMiddleware } from 'redux';
 
 import App from "./components/App/App.js";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import darkBaseTheme from "material-ui/styles/baseThemes/darkBaseTheme";
-import lightBaseTheme from "material-ui/styles/baseThemes/lightBaseTheme";
+// import darkBaseTheme from "material-ui/styles/baseThemes/darkBaseTheme";
+// import lightBaseTheme from "material-ui/styles/baseThemes/lightBaseTheme";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import registerServiceWorker from "./registerServiceWorker";
 import reducers from './reducers';
