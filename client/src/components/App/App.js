@@ -23,6 +23,7 @@ import RaisedButtonSimple from "../Buttons/RaisedButton.js";
 import ArrowDropRight from "material-ui/svg-icons/navigation-arrow-drop-right";
 import backgroundImage from "../../images/charnaTop.jpg";
 import crypto_logo from "../../images/crypto_logo.png";
+import Footer from "../Footer/foot.js";
 
 const paperStyle = {
   height: "85%",
@@ -175,11 +176,11 @@ class App extends Component {
           {content} {/* this is main content area */}
         </Paper>
 
-        <div className="banner">
-          <img src={cryptoLogo} alt="CryptoLogo" width="100%" height="200px"/>
-        </div>
+        {/*<div className="banner">
+        //   <img src={cryptoLogo} alt="CryptoLogo" width="100%" height="200px"/>
+        // </div>*/}
 
-
+        <Footer />  
 
       </div> // close div className="App"
     ); // close return
@@ -203,10 +204,10 @@ function mapStateToProps({ auth }) {
   return {auth};
 }
 
-        <div className="banner">
-          <img src={cryptoLogo} alt="CryptoLogo" width="100%" height="200px"/>
-        </div>
+        // <div className="banner">
+          // <img src={cryptoLogo} alt="CryptoLogo" width="100%" height="200px"/>
+        // </div>
 
-
+      
 
 export default connect(mapStateToProps, actions) (App);
