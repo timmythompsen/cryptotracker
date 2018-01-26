@@ -6,7 +6,7 @@ import { Toolbar, ToolbarTitle } from "material-ui/Toolbar";
 import CryptoChart from "../CryptoChart/CryptoChart.js";
 import Paper from "material-ui/Paper";
 import backgroundImage from "../../images/charnaTop.jpg";
-
+import moment from 'moment';
 
 // import "./Home.css";
 
@@ -26,20 +26,28 @@ class Home extends Component {
 
     this.state = {
       cryptos: [],
-      stateHistData: [],
+      stateHistData: {},
       open: false,
       show: null,
-      chartData: {}      
+      chartData: {
+      	labels: [],
+      	dataset: [{
+      		label: 'Cryptocurrency Trading History',
+      		data: []
+      	}]
+      }      
     };
   }; // close constructor(props)
 
   componentWillMount() {
-    this.getChartData();
+    // this.getChartData();
     this.getCryptoChartData();
   }
 
   componentDidMount() {
     // this.props.fetchUser();
+    // this.getCryptoChartData();
+
     this.getCurrentPriceData();
   } 
 
@@ -74,6 +82,7 @@ class Home extends Component {
 				<Paper style={paperStyle} zDepth={5}>
 				<div className="Chart">
 					<CryptoChart chartData={this.state.chartData} />
+					{console.log('chart rendered: ', this.state.chartData)}
 				</div> {/* close className="Chart" */}	
 				</Paper>
 
@@ -99,6 +108,10 @@ class Home extends Component {
 	  }; // close updateData = () => {
 
 	  getCryptoChartData() {
+
+	     var arrayTime = [];
+	     var arrayPrice =[];	
+	       	
 	    console.log("getCryptoChartData funtion called");
 	    axios
 	      .get(
@@ -107,9 +120,33 @@ class Home extends Component {
 	      .then(res => {
 	        const histData = res.data;
 	        console.log('histData: ', histData);
-	        this.setState({ stateHistData: histData });
-	        console.log('stateHistData: ', this.state.stateHistData);
+	        console.log('values', Object.values(histData.Data))
+
+
+
+	        for (var i=0; i<histData.Data.length; i++){
+	  			  var chartTimeUnix = moment.unix(histData.Data[i].time);
+	  			  var chartTimePretty = chartTimeUnix.format("MM/DD/YY HH:mm");
+	  			  console.log('chartTimePretty ', chartTimePretty);
+	  			  arrayTime.push(chartTimePretty);
+	  			  arrayPrice.push(histData.Data[i].close);	
+	  			  console.log('for loop histData[i].time', chartTimeUnix.format("MM/DD/YY HH:mm"));
+	      	  console.log('for loop histData[i].close ', histData.Data[i].close);
+	        }
+
+	        // console.log('stateHistData: ', this.state.stateHistData);
 	      });
+	     	console.log('updated state with time and price: ', this.state);
+	        this.setState({
+	        		chartData:{
+		        		labels: arrayTime,
+		        		datasets: [
+		        			{
+		        			label: 'CryptoCurrency Trading History',	
+		        			data: arrayPrice
+		        		}]
+	        	}}); // this.setState({ stateHistData: histData });
+
 	  }; // close getCryptoChartData()
 
 		 getChartData() {
@@ -127,24 +164,16 @@ class Home extends Component {
 	              106519,
 	              95072,
 	              80000
-	            ],
-	            backgroundColor: [
-	              'rgba(255,99,132,0.6)',
-	              'rgba(54,162,235,0.6)',
-	              'rgba(255,206,86,0.6)',
-	              'rgba(75,192,192,0.6)',
-	              'rgba(153,102,255,0.6)',
-	              'rgba(255,159,64,0.6)',
-	              'rgba(255,99,132,0.6)'
-	            ],
-	            borderWidth:1,
-	            borderColor:'#777',
-	            hoverBorderWidth:3,
-	            hoverBorderColor: '#000'
+	            ]
 	        }]
 	      } // close chartData:{}
-	    }) // close this.setState
+	    })// close this.setState
+
+	    	console.log('state updated by getChartData ', this.state)
+
 	  } // close getChartData()
+
+	  
 	
 	// ===== END FUNCTIONS ===== //	  	  	
 
