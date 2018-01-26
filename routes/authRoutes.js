@@ -1,6 +1,7 @@
 const passport = require('passport');
 const mongoose = require('mongoose');
 const User = mongoose.model('users');
+const bodyParser = require('body-parser');
 
 module.exports = (app) => {
 	app.get('/auth/google', passport.authenticate('google', {
@@ -23,26 +24,30 @@ module.exports = (app) => {
 		res.send(req.user);
 	});
 
-	app.post('/add_coins', (req, res) => {
-		User.findById(req.user.id, function (err, user) {
-			if(err){
-				console.log('error in findById');
-			}
-		    if(!user){
-		    	req.flash('error', 'No account found');
-		    	return res.redirect('/');
-		    }
+	function correctUser(){
+		app.get('/api/current_user', (req, res) => {
 
-		    var coins = req.body.coins;
+			res.send(req.user._id);
 
-		    user.coins = coins;
-
-		    user.save(function (err) {
-		        if(err) {
-		            console.error('ERROR!');
-		        }
-		     	res.redirect('/');
-		    });
 		});
+	}
+
+	app.post('/api/add_coins', (req, res) => {
+		console.log('add coins route good');
+		console.log(req);
+		User.update({
+			googleId: req.body.googleId
+		}, {
+			coins: req.body.coins
+		}, function(err, result){
+			if(err){
+				console.log(err);
+			}else{
+				console.log(result);
+			}
+		});
+
+		res.send('testing');
 	});
+	
 };
