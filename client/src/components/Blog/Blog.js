@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "./Blog.css";
+// import "./Blog.css";
 
 import bitCoinAnonymity from './blogImages/bitcoin-anonymity.png';
 import bitCoinExchange from './blogImages/bitcoin-exchange.png';

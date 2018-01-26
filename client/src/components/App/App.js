@@ -7,6 +7,7 @@ import AddCoins from "../AddCoins/AddCoins";
 import Blog from "../Blog/Blog";
 import FAQ from "../FAQ/FAQ";
 import FVArticle from "../Resources/FVArticle";
+import Regulations from "../Resources/Regulations";
 import XBTFairValueCalc from "../Resources/XBTFairValueCalc";
 import ContactUs from "../ContactUs/ContactUs";
 import cryptoLogo from "./cryptoLogo.png";
@@ -23,6 +24,7 @@ import RaisedButtonSimple from "../Buttons/RaisedButton.js";
 import ArrowDropRight from "material-ui/svg-icons/navigation-arrow-drop-right";
 import backgroundImage from "../../images/charnaTop.jpg";
 import crypto_logo from "../../images/crypto_logo.png";
+import silverCoin from "../../images/silverCoin.png";
 import Footer from "../Footer/foot.js";
 
 const paperStyle = {
@@ -72,6 +74,10 @@ class App extends Component {
     this.setState({ show: "fvArticle", open: false });
   };
 
+  showRegulations = () => {
+    this.setState({ show: "regulations", open: false });
+  };
+
   showXBT_FV = () => {
     this.setState({ show: "xbt_fv", open: false });
   };
@@ -116,6 +122,10 @@ class App extends Component {
         content = <FVArticle />;
         break;
 
+      case "regulations":
+        content = <Regulations />;
+        break; 
+
       case "xbt_fv":
         content = <XBTFairValueCalc />;
         break;
@@ -135,12 +145,13 @@ class App extends Component {
           <img src={cryptoLogo} alt="CryptoLogo" width="100%" height="200px"/>
         </div>
 
-
-        <AppBar 
-          iconClassNameRight="muidocs-icon-navigation-expand-more"
-          title= "“Stay away from it. It’s a mirage, basically” - Warren Buffet"
-          onLeftIconButtonClick={this.handleToggle}
-        />
+        <div className="logo">
+        <AppBar
+            iconClassNameRight="muidocs-icon-navigation-expand-more"
+            title={<img src={silverCoin} alt="logo" width="25px" height="25"/>}
+            onLeftIconButtonClick={this.handleToggle}
+          />
+        </div>  
 
         <Drawer
           docked={false}
@@ -157,12 +168,16 @@ class App extends Component {
             rightIcon={<ArrowDropRight />}
             menuItems={[
               <MenuItem
-                onClick={this.showFVArticle}
-                primaryText="Bitcoin Futures Article"
+                onClick={this.showRegulations}
+                primaryText="Regulations"
               />,
               <MenuItem
                 onClick={this.showXBT_FV}
                 primaryText="Bitcoin Futures Fair Value Calculator"
+              />,
+              <MenuItem
+                onClick={this.showFVArticle}
+                primaryText="Trading Bitcoin Futures"
               />
             ]}
           />
