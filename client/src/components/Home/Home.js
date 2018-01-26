@@ -32,7 +32,7 @@ class Home extends Component {
       chartData: {
       	labels: [],
       	dataset: [{
-      		label: 'Cryptocurrency Trading History',
+      		label: 'Bitcoin Trading History - Last 24 Hours',
       		data: []
       	}]
       }      
@@ -41,12 +41,12 @@ class Home extends Component {
 
   componentWillMount() {
     // this.getChartData();
-    this.getCryptoChartData();
+    // this.getCryptoChartData();
   }
 
   componentDidMount() {
     // this.props.fetchUser();
-    // this.getCryptoChartData();
+    this.getCryptoChartData();
 
     this.getCurrentPriceData();
   } 
@@ -81,7 +81,11 @@ class Home extends Component {
 
 				<Paper style={paperStyle} zDepth={5}>
 				<div className="Chart">
-					<CryptoChart chartData={this.state.chartData} />
+					<CryptoChart 
+						chartData={this.state.chartData} 
+						options = {{ legend: { display: false }}}
+
+					/>
 					{console.log('chart rendered: ', this.state.chartData)}
 				</div> {/* close className="Chart" */}	
 				</Paper>
@@ -107,47 +111,55 @@ class Home extends Component {
 	      });
 	  }; // close updateData = () => {
 
-	  getCryptoChartData() {
+	  getCryptoChartData = () => {
 
 	     var arrayTime = [];
 	     var arrayPrice =[];	
 	       	
 	    console.log("getCryptoChartData funtion called");
+	    const _that = this;
+
+	    console.log("LOLOLOLLO+: ",_that);
+
 	    axios
 	      .get(
 	        "https://min-api.cryptocompare.com/data/histohour?fsym=BTC&tsym=USD&limit=24&aggregate=1"
 	      )
 	      .then(res => {
 	        const histData = res.data;
-	        console.log('histData: ', histData);
-	        console.log('values', Object.values(histData.Data))
-
-
-
 	        for (var i=0; i<histData.Data.length; i++){
 	  			  var chartTimeUnix = moment.unix(histData.Data[i].time);
-	  			  var chartTimePretty = chartTimeUnix.format("MM/DD/YY HH:mm");
-	  			  console.log('chartTimePretty ', chartTimePretty);
+	  			  var chartTimePretty = chartTimeUnix.format("MMM-DD HH:mm");
 	  			  arrayTime.push(chartTimePretty);
 	  			  arrayPrice.push(histData.Data[i].close);	
-	  			  console.log('for loop histData[i].time', chartTimeUnix.format("MM/DD/YY HH:mm"));
-	      	  console.log('for loop histData[i].close ', histData.Data[i].close);
 	        }
 
-	        // console.log('stateHistData: ', this.state.stateHistData);
-	      });
-	     	console.log('updated state with time and price: ', this.state);
-	        this.setState({
+	        console.log("WE SHOULD HAVE DATA!!!!!!")
+
+	       this.setState({
 	        		chartData:{
 		        		labels: arrayTime,
 		        		datasets: [
 		        			{
-		        			label: 'CryptoCurrency Trading History',	
+		        			label: false,	
 		        			data: arrayPrice
 		        		}]
-	        	}}); // this.setState({ stateHistData: histData });
+	        	}}); // this.setState({ stateHistData: histData });	      	        
+
+	        // console.log('stateHistData: ', this.state.stateHistData);
+	      }
+	     	// console.log('updated state with time and price: ', this.state);
+
+
+	      );
+
 
 	  }; // close getCryptoChartData()
+
+	  async updateState() {
+
+
+	  }
 
 		 getChartData() {
 	    // Ajax call here
