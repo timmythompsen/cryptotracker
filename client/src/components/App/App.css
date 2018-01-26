@@ -3,7 +3,7 @@ body {
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
   background: #f1f1f1;
-  padding:50px;
+  /*padding:50px;*/
   background-image: url("../../images/background.png");
   background-position: center;
   background-repeat: no-repeat;
@@ -31,14 +31,16 @@ div#crypto-container {
   background: darkgrey;
 }
 
-
-
+/*.banner {
+  position: fixed;
+}
+*/
 .banner img {
   width: 100%;
   /*margin: 0 25px 0 80px;*/
 }
 
-
+/*within home value box*/
 span.left {
   font-weight: bold;
   float: left;
@@ -49,25 +51,46 @@ span.right {
 }
 
 h1 {
+  font-size: 40px;
   color: #003366;
 }
 
 h2 {
   font-size: 36px;
-  color: #0b1a4d;
+  color: navy;
+}
+
+h3 {
+  font-size: 24px;
+  color: navy;
+}
+
+blockquote {
+  font-size: 20px;
+  color: navy;
+}
+
+p {
+  font-size: 18px;
+  color: navy;
 }
 
 /*blog images*/
 img {
   height: 200px;
   width: 250px;
+
 }
 
+.logo {
+  margin:0;
+}
 /*logo in navbar*/
-/*.logo img {
-  height: 65px;
-  width: 300px;
-}*/
+.logo img {
+  height: 48px;
+  width: 48px;
+  margin-top: 10px;
+}
 
 .faq-question {
   font-size: 36px;
@@ -97,7 +120,7 @@ img {
 footer p{
 text-align: center;
  line-height: 16px;
-font-size: 24px;  
+font-size: 18px;  
   font-weight: 200;
   letter-spacing: .3px;
   color: white;
@@ -110,7 +133,7 @@ font-size: 24px;
 }
 
 .regulations {
-  color: pink;
+  color: navy;
   text-align: left;
   margin-left: 25px;
   margin-right: 30px;
@@ -128,5 +151,26 @@ font-size: 24px;
   margin-right: 20px;
 }
 
+.reg img {
+  width: 800px;
+  height: 400px;
+  margin-left: 65px;
+  margin-right: 30px;
+  text-align: justify-all;
 
+}
+
+.reg {
+  text-align: justify-all;
+  margin-right: 25px;
+  margin-left: 25px;
+}
+
+/*feat-img {
+  width: 800px;
+  height: 400px;
+  margin-left: 65px;
+  margin-right: 30px;
+
+}*/
 

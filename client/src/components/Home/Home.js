@@ -20,10 +20,8 @@ const paperStyle = {
 };
 
 class Home extends Component {
-
   constructor() {
     super();
-
     this.state = {
       cryptos: [],
       stateHistData: {},
@@ -32,29 +30,27 @@ class Home extends Component {
       chartData: {
       	labels: [],
       	dataset: [{
-      		label: 'Cryptocurrency Trading History',
+      		label: 'Bitcoin Trading History - Last 24 Hours',
       		data: []
       	}]
       }      
     };
-  }; // close constructor(props)
+  }; // close constructor()
 
   componentWillMount() {
     // this.getChartData();
-    this.getCryptoChartData();
+    // this.getCryptoChartData();
   }
 
   componentDidMount() {
     // this.props.fetchUser();
-    // this.getCryptoChartData();
-
+    this.getCryptoChartData();
     this.getCurrentPriceData();
   } 
 
 	render() {
 		return(
 			<div className="Home">
-
 				<div className="coinList">
 		          <Toolbar style={{ justifyContent: 'center'}}>
 		            <ToolbarTitle text="Current Cryptocurrency Quotes" />
@@ -81,7 +77,11 @@ class Home extends Component {
 
 				<Paper style={paperStyle} zDepth={5}>
 				<div className="Chart">
-					<CryptoChart chartData={this.state.chartData} />
+					<CryptoChart 
+						chartData={this.state.chartData} 
+						options = {{ legend: { display: false }}}
+
+					/>
 					{console.log('chart rendered: ', this.state.chartData)}
 				</div> {/* close className="Chart" */}	
 				</Paper>
@@ -94,7 +94,7 @@ class Home extends Component {
 
 	// ===== FUNCTIONS ===== //
 
-	  getCurrentPriceData = () => {
+	getCurrentPriceData = () => {
 	    console.log("getCurrentPriceData funtion called");
 	    axios
 	      .get(
@@ -105,75 +105,35 @@ class Home extends Component {
 	        console.log('getCurrentPriceData / cryptos: ', cryptos);
 	        this.setState({ cryptos: cryptos });
 	      });
-	  }; // close updateData = () => {
+	}; // close getCurrentPriceData = () => {
 
-	  getCryptoChartData() {
-
-	     var arrayTime = [];
-	     var arrayPrice =[];	
-	       	
-	    console.log("getCryptoChartData funtion called");
-	    axios
+	getCryptoChartData = () => {
+	   var arrayTime = [];
+	   var arrayPrice =[];	
+	   axios
 	      .get(
 	        "https://min-api.cryptocompare.com/data/histohour?fsym=BTC&tsym=USD&limit=24&aggregate=1"
 	      )
 	      .then(res => {
 	        const histData = res.data;
-	        console.log('histData: ', histData);
-	        console.log('values', Object.values(histData.Data))
-
-
-
 	        for (var i=0; i<histData.Data.length; i++){
 	  			  var chartTimeUnix = moment.unix(histData.Data[i].time);
-	  			  var chartTimePretty = chartTimeUnix.format("MM/DD/YY HH:mm");
-	  			  console.log('chartTimePretty ', chartTimePretty);
+	  			  var chartTimePretty = chartTimeUnix.format("MMM-DD HH:mm");
 	  			  arrayTime.push(chartTimePretty);
 	  			  arrayPrice.push(histData.Data[i].close);	
-	  			  console.log('for loop histData[i].time', chartTimeUnix.format("MM/DD/YY HH:mm"));
-	      	  console.log('for loop histData[i].close ', histData.Data[i].close);
 	        }
-
-	        // console.log('stateHistData: ', this.state.stateHistData);
-	      });
-	     	console.log('updated state with time and price: ', this.state);
-	        this.setState({
+		      this.setState({
 	        		chartData:{
 		        		labels: arrayTime,
 		        		datasets: [
 		        			{
-		        			label: 'CryptoCurrency Trading History',	
+		        			label: false,	
 		        			data: arrayPrice
 		        		}]
-	        	}}); // this.setState({ stateHistData: histData });
-
+	      		} // close chartData
+		      }); // close this.setState({       
+	      }); // close .then(res => {
 	  }; // close getCryptoChartData()
-
-		 getChartData() {
-	    // Ajax call here
-	    this.setState({
-	      chartData:  {
-	        labels: ['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
-	        datasets: [
-	          {
-	            label: 'Population',
-	            data: [
-	              617594,
-	              181045,
-	              153060,
-	              106519,
-	              95072,
-	              80000
-	            ]
-	        }]
-	      } // close chartData:{}
-	    })// close this.setState
-
-	    	console.log('state updated by getChartData ', this.state)
-
-	  } // close getChartData()
-
-	  
 	
 	// ===== END FUNCTIONS ===== //	  	  	
 
