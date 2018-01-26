@@ -16,11 +16,11 @@ import Drawer from "material-ui/Drawer";
 import MenuItem from "material-ui/MenuItem";
 import Paper from "material-ui/Paper";
 import "./App.css";
-import axios from "axios";
+// import axios from "axios";
 import ArrowDropRight from "material-ui/svg-icons/navigation-arrow-drop-right";
 import backgroundImage from "../../images/charnaTop.jpg";
 
-import crypto_logo from "../../images/crypto_logo.png";
+// import crypto_logo from "../../images/crypto_logo.png";
 import silverCoin from "../../images/silverCoin.png";
 
 import Footer from "../Footer/foot.js";
@@ -139,17 +139,19 @@ class App extends Component {
     return (
       <div className="App">
         
-        <div className="banner">
-          <img src={cryptoLogo} alt="CryptoLogo" width="100%" height="200px"/>
-        </div>
-
         <div className="logo">
         <AppBar
             iconClassNameRight="muidocs-icon-navigation-expand-more"
+            style={{position: 'fixed', top: 0}}
             title={<img src={silverCoin} alt="logo" width="25px" height="25"/>}
             onLeftIconButtonClick={this.handleToggle}
           />
         </div>  
+
+        <div className="banner">
+          <img src={cryptoLogo} alt="CryptoLogo" width="100%" height="200px"/>
+        </div>
+
 
         <Drawer
           docked={false}

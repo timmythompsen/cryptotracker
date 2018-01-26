@@ -3,7 +3,7 @@ body {
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
   background: #f1f1f1;
-  padding:50px;
+  /*padding:50px;*/
   background-image: url("../../images/background.png");
   background-position: center;
   background-repeat: no-repeat;
@@ -31,8 +31,10 @@ div#crypto-container {
   background: darkgrey;
 }
 
-
-
+/*.banner {
+  position: fixed;
+}
+*/
 .banner img {
   width: 100%;
   /*margin: 0 25px 0 80px;*/
@@ -80,6 +82,9 @@ img {
 
 }
 
+.logo {
+  margin:0;
+}
 /*logo in navbar*/
 .logo img {
   height: 48px;
