@@ -3,6 +3,8 @@ import _ from 'lodash';
 import axios from "axios";
 import SearchBar from './search_bar';
 import NumberFormat from "react-number-format";
+import AddBtn from './button';
+
 
 class AddCoins extends Component {
 	constructor(props) {
@@ -10,7 +12,7 @@ class AddCoins extends Component {
 
 		this.state = {
 			coinList: [],
-			selectedCoins: []
+			selectedCoins: [],
 		};
 	}
 
@@ -24,22 +26,35 @@ class AddCoins extends Component {
         `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${term}&tsyms=USD`
       )
       .then(res => {
-        const cryptos = res.data;
-        console.log(cryptos);
-        this.setState({ selectedCoins: cryptos });
-      });
-  }
+			const cryptos = res.data;
+        	console.log("coin search res" , cryptos);
+        	this.setState({selectedCoins: cryptos});
+        	});
+      }
+  
 
-  handleClick = () => {
-  	this.setState({ 
-	  coinList: this.state.coinList.concat(this.state.selectedCoins)
-	})
-	console.log(this.state.coinList);
+  handleClick = (key) => {
+  	 console.log("you clicked the button", key);
+
+  	 const newState = {
+  	 	coinList: this.state.coinList.concat(key)
+  	 }
+
+  	 this.setState(newState)
+
+  	 axios.post('/api/add_coins', newState)
+  	 .then(function (response){
+  	 	console.log(response);
+  	 }).catch(function (error){
+  	 	console.log(error);
+  	 });
   }
 
 	render() {
 
-		const videoSearch = _.debounce((term)=> {this.coinSearch(term) }, 3000);
+		const coinSearch = _.debounce((term)=> {this.coinSearch(term) }, 3000);
+
+		console.log(this.state);
 
 		return(
 			<div>
@@ -47,8 +62,11 @@ class AddCoins extends Component {
 				<SearchBar onSearchTermChange={this.coinSearch} />
 				{Object.keys(this.state.selectedCoins).map(key => (
 		            <div id="crypto-container">
-		            <button className="btn btn-default"
-				       onClick={this.props.handleClick}>Add Coin</button>
+		            <button 
+		            	className="btn btn-default"
+				       	onClick={() => this.handleClick(key)}>
+				       	Add Coin
+			       	</button>
 		              <span className="left">{key}</span>
 		              <span className="right">
 		                <NumberFormat
