@@ -3,13 +3,6 @@ import {Bar, Line, Pie} from "react-chartjs-2";
 
 class CryptoChart extends Component {
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			chartData:props.chartData
-		}
-	}
-
 	static defaultProps = {
 		displayTitle: true,
 		displayLegend: true,
@@ -17,19 +10,20 @@ class CryptoChart extends Component {
 	}
 
   render() {
+  	 const data = this.props.chartData
     return (
     	<div className="chart">
 			<Line
-				data={this.state.chartData}
+				data={data}
 				options={{
 					maintainAspectRatio: true,
 					title: {
 						display: this.props.displayTitle,
-						text: 'CryptoCurrency Trading History',
+						text: 'Bitcoin 24 Hour Trading History',
 						fontSize: 25
 					},
 					legend: {
-						display: this.props.displayLegend,
+						display: false,
 						position: this.props.legendPosition
 					}
 				}}
