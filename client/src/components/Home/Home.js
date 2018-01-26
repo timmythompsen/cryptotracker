@@ -20,10 +20,8 @@ const paperStyle = {
 };
 
 class Home extends Component {
-
   constructor() {
     super();
-
     this.state = {
       cryptos: [],
       stateHistData: {},
@@ -37,7 +35,7 @@ class Home extends Component {
       	}]
       }      
     };
-  }; // close constructor(props)
+  }; // close constructor()
 
   componentWillMount() {
     // this.getChartData();
@@ -47,14 +45,12 @@ class Home extends Component {
   componentDidMount() {
     // this.props.fetchUser();
     this.getCryptoChartData();
-
     this.getCurrentPriceData();
   } 
 
 	render() {
 		return(
 			<div className="Home">
-
 				<div className="coinList">
 		          <Toolbar style={{ justifyContent: 'center'}}>
 		            <ToolbarTitle text="Current Cryptocurrency Quotes" />
@@ -98,7 +94,7 @@ class Home extends Component {
 
 	// ===== FUNCTIONS ===== //
 
-	  getCurrentPriceData = () => {
+	getCurrentPriceData = () => {
 	    console.log("getCurrentPriceData funtion called");
 	    axios
 	      .get(
@@ -109,19 +105,12 @@ class Home extends Component {
 	        console.log('getCurrentPriceData / cryptos: ', cryptos);
 	        this.setState({ cryptos: cryptos });
 	      });
-	  }; // close updateData = () => {
+	}; // close getCurrentPriceData = () => {
 
-	  getCryptoChartData = () => {
-
-	     var arrayTime = [];
-	     var arrayPrice =[];	
-	       	
-	    console.log("getCryptoChartData funtion called");
-	    const _that = this;
-
-	    console.log("LOLOLOLLO+: ",_that);
-
-	    axios
+	getCryptoChartData = () => {
+	   var arrayTime = [];
+	   var arrayPrice =[];	
+	   axios
 	      .get(
 	        "https://min-api.cryptocompare.com/data/histohour?fsym=BTC&tsym=USD&limit=24&aggregate=1"
 	      )
@@ -133,10 +122,7 @@ class Home extends Component {
 	  			  arrayTime.push(chartTimePretty);
 	  			  arrayPrice.push(histData.Data[i].close);	
 	        }
-
-	        console.log("WE SHOULD HAVE DATA!!!!!!")
-
-	       this.setState({
+		      this.setState({
 	        		chartData:{
 		        		labels: arrayTime,
 		        		datasets: [
@@ -144,48 +130,10 @@ class Home extends Component {
 		        			label: false,	
 		        			data: arrayPrice
 		        		}]
-	        	}}); // this.setState({ stateHistData: histData });	      	        
-
-	        // console.log('stateHistData: ', this.state.stateHistData);
-	      }
-	     	// console.log('updated state with time and price: ', this.state);
-
-
-	      );
-
-
+	      		} // close chartData
+		      }); // close this.setState({       
+	      }); // close .then(res => {
 	  }; // close getCryptoChartData()
-
-	  async updateState() {
-
-
-	  }
-
-		 getChartData() {
-	    // Ajax call here
-	    this.setState({
-	      chartData:  {
-	        labels: ['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
-	        datasets: [
-	          {
-	            label: 'Population',
-	            data: [
-	              617594,
-	              181045,
-	              153060,
-	              106519,
-	              95072,
-	              80000
-	            ]
-	        }]
-	      } // close chartData:{}
-	    })// close this.setState
-
-	    	console.log('state updated by getChartData ', this.state)
-
-	  } // close getChartData()
-
-	  
 	
 	// ===== END FUNCTIONS ===== //	  	  	
 

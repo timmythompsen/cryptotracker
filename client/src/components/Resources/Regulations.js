@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import gavel from './resourcesimages/gavel.png';
+// import gavel from './resourcesimages/gavel.png';
 import regulation from './resourcesimages/regulation.jpg';
-import tags from './resourcesimages/tags.jpg';
-import wetrust from './resourcesimages/wetrust.jpg';
+// import tags from './resourcesimages/tags.jpg';
+// import wetrust from './resourcesimages/wetrust.jpg';
 
 
 class Regulations extends Component {

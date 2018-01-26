@@ -3,7 +3,6 @@ import TextField from "material-ui/TextField";
 import CalcButton from "./CalcButton";
 import Example from "./Example";
 import "./Resources.css";
-import NumberFormat from "react-number-format";
 
 class XBTFairValueCalc extends Component {
   state = {
