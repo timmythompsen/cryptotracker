@@ -15,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chart.js": "^1.1.1",
     "concurrent": "^0.3.2",
     "concurrently": "^3.5.1",
     "cookie-session": "^2.0.0-beta.3",
@@ -23,6 +24,9 @@
     "nodemon": "^1.14.8",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0",
+    "react": "^16.2.0",
+    "react-chartjs": "^1.2.0",
+    "react-dom": "^16.2.0",
     "save": "^2.3.2"
   },
   "devDependencies": {},

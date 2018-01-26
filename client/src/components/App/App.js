@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {BrowserRouter, Route} from 'react-router-dom';
+// import {BrowserRouter, Route} from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import Home from "../Home/Home";
@@ -15,16 +15,14 @@ import AppBar from "material-ui/AppBar";
 import Drawer from "material-ui/Drawer";
 import MenuItem from "material-ui/MenuItem";
 import Paper from "material-ui/Paper";
-import { Toolbar, ToolbarTitle } from "material-ui/Toolbar";
 import "./App.css";
 import axios from "axios";
-import NumberFormat from "react-number-format";
-import NAVBar from "../NAVBar/NAVBar.js";
-import RaisedButtonSimple from "../Buttons/RaisedButton.js";
 import ArrowDropRight from "material-ui/svg-icons/navigation-arrow-drop-right";
 import backgroundImage from "../../images/charnaTop.jpg";
+
 import crypto_logo from "../../images/crypto_logo.png";
 import silverCoin from "../../images/silverCoin.png";
+
 import Footer from "../Footer/foot.js";
 
 const paperStyle = {
@@ -43,13 +41,13 @@ class App extends Component {
     this.state = {
       cryptos: [],
       open: false,
-      show: null
+      show: null,
+
     };
   }
 
   componentDidMount() {
     this.props.fetchUser();
-    this.updateData();
   }
 
   handleToggle = () => this.setState({ open: !this.state.open });
@@ -201,26 +199,10 @@ class App extends Component {
     ); // close return
   } // close class App extends Component
 
-  updateData = () => {
-    console.log("updateData funtion called");
-    axios
-      .get(
-        "https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC,BCH,IOT&tsyms=USD"
-      )
-      .then(res => {
-        const cryptos = res.data;
-        console.log(cryptos);
-        this.setState({ cryptos: cryptos });
-      });
-  }; //close updateData)()
 } // close class App extends Component
 
 function mapStateToProps({ auth }) {
   return {auth};
 }
-
-      
-
-      
-
+  
 export default connect(mapStateToProps, actions) (App);

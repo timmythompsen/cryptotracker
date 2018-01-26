@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TextField from "material-ui/TextField";
 import CalcButton from "./CalcButton";
 import Example from "./Example";
+import "./Resources.css";
 
 class XBTFairValueCalc extends Component {
   state = {
@@ -14,7 +15,9 @@ class XBTFairValueCalc extends Component {
     fairSummary1: "",
     fairSummary2: "",
     fairSummary3: "",
-    fairSummary4: ""            
+    fairSummary4: "",
+    fairSummary5: "",
+    curPair: "XBT/USD"            
   };
 
   change = e => {
@@ -33,7 +36,8 @@ class XBTFairValueCalc extends Component {
       numIntRate: 0.0,
       denomIntRate: 0.0,
       daysTilExpiry: 0,
-      contSize: 0.0
+      contSize: 0.0,
+      curPair: ""
     });
     this.props.onChange({
       futPrice: 0,
@@ -41,7 +45,8 @@ class XBTFairValueCalc extends Component {
       numIntRate: 0.0,
       denomIntRate: 0.0,
       daysTilExpiry: 0,
-      contSize: 0.0
+      contSize: 0.0,
+      curPair: ""      
     });
   };
 
@@ -112,14 +117,16 @@ class XBTFairValueCalc extends Component {
           <br />
           <CalcButton label="Calculate" handleClick={this.calcData}/>
           <div>
-            Calc Results go here:
+
             {this.calcData.fvCalcResults}
             <Example 
               fairSummary1={this.state.fairSummary1}
               fairSummary2={this.state.fairSummary2}       
               fairSummary3={this.state.fairSummary3}    
-              fairSummary4={this.state.fairSummary4}                                
+              fairSummary4={this.state.fairSummary4}
+              fairSummary5={this.state.fairSummary5}                                                
             />
+            <br/> <br/>
           </div>
         </form>
 
@@ -139,6 +146,7 @@ class XBTFairValueCalc extends Component {
     let fairSummary2;
     let fairSummary3;
     let fairSummary4;
+    let fairSummary5;
 
     console.log("CalcData button clicked");
     console.log("state ", this.state);
@@ -186,7 +194,8 @@ class XBTFairValueCalc extends Component {
     } days is ${netCost.toLocaleString()} `;
     fairSummary4 = ` Fair Value: ${fairValueCalc.toFixed(5)} | Futures: ${
       this.state.futPrice
-    } | Spread: ${fairValueSpread.toFixed(4)} | Futures ${fairValueOverUnder} `;
+    } | Spread: ${fairValueSpread.toFixed(4)}`;
+    fairSummary5 = `Futures ${fairValueOverUnder} `;
 
     console.log("spotTrade: ", spotTrade);
     console.log("denomFinCharge: ", denomFinCharge);
@@ -207,7 +216,8 @@ class XBTFairValueCalc extends Component {
       fairSummary1,
       fairSummary2,
       fairSummary3,
-      fairSummary4
+      fairSummary4,
+      fairSummary5
     });
   };
 }
