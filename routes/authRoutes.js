@@ -24,13 +24,9 @@ module.exports = (app) => {
 		res.send(req.user);
 	});
 
-	function correctUser(){
-		app.get('/api/current_user', (req, res) => {
-
-			res.send(req.user._id);
-
-		});
-	}
+	app.get('/api/my_coins', (req, res) => {
+		res.send(req.user);
+	});
 
 	app.post('/api/add_coins', (req, res) => {
 		console.log('add coins route good');
@@ -43,7 +39,7 @@ module.exports = (app) => {
 			if(err){
 				console.log(err);
 			}else{
-				console.log(result);
+				console.log('post', result);
 			}
 		});
 
