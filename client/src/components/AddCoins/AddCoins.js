@@ -3,7 +3,9 @@ import _ from 'lodash';
 import axios from "axios";
 import SearchBar from './search_bar';
 import NumberFormat from "react-number-format";
+import { Toolbar, ToolbarTitle } from "material-ui/Toolbar";
 import RaisedButtonSimple from "../Buttons/RaisedButton.js";
+import './AddCoins.css';
 //import AddBtn from './button';
 
 
@@ -76,31 +78,60 @@ class AddCoins extends Component {
 
 		return(
 			<div>
-				<h1>Choose Coins to add to your dashboard</h1>
-				<SearchBar onSearchTermChange={this.coinSearch} />
-				{Object.keys(this.state.selectedCoins).map(key => (
-		            <div id="crypto-container">
-		            <button 
-		            	className="btn btn-default"
-				       	onClick={() => this.handleClick(key)}>
-				       	Add Coin
-			       	</button>
-		              <span className="left">{key}</span>
-		              <span className="right">
-		                <NumberFormat
-		                  value={this.state.selectedCoins[key].USD}
-		                  displayType={"text"}
-		                  decimalPrecision={2}
-		                  thousandSeparator={true}
-		                  prefix={"$"}
-		                />
-		              </span>
-		            </div>
-		          ))}
-	          	<br/><br/>
+				<div id="add_coin_input">
+					<h1>Choose Coins to add to your dashboard</h1>
+					<SearchBar onSearchTermChange={this.coinSearch} />
+					{Object.keys(this.state.selectedCoins).map(key => (
+			            <div id="crypto-container">
+			            <button 
+			            	className="btn btn-default"
+					       	onClick={() => this.handleClick(key)}>
+					       	Add Coin
+				       	</button>
+			              <span className="left">{key}</span>
+			              <span className="right">
+			                <NumberFormat
+			                  value={this.state.selectedCoins[key].USD}
+			                  displayType={"text"}
+			                  decimalPrecision={2}
+			                  thousandSeparator={true}
+			                  prefix={"$"}
+			                />
+			              </span>
+			            </div>
+			          ))}
+		          	<br/><br/>
+		         </div>
+		         
+					<div className="coinList">
+			          <Toolbar style={{ justifyContent: 'center'}}>
+			            <ToolbarTitle text="My Cryptocurrency Watch List" />
+			          </Toolbar>  
+			          <br />
+			          {console.log("AddCoins this.state.cryptos test ", this.state.cryptos)}
+			          {Object.keys(this.state.cryptos).map(key => (
+			            <div id="myCoinList">
+			              <span className="left">{key}</span>
+			              <span className="right">
+			                <NumberFormat
+			                  value={this.state.cryptos[key].USD}
+			                  displayType={"text"}
+			                  decimalPrecision={2}
+			                  thousandSeparator={true}
+			                  prefix={"$"}
+			                />  {/* close number format */}
+			              </span> {/* close span className="right" */}
+		            	</div> // close div id="crypto-container"
+		          	))} {/* close map(key=>; then map(key =>(; then {Object.keys */}
+		          	<br/><br/>
+		
+					</div> {/*close className="coinList" */}
+
+
+
 			</div>
 		)
-	}
+	} // closes render() {
 
    getUserId = () => {
 	axios.get('/api/current_user').then(res => {
@@ -123,7 +154,7 @@ class AddCoins extends Component {
 	      .then(res => {
 	        const cryptoPrices = res.data;
 	        console.log('getCurrentPriceData / cryptos: ', cryptoPrices);
-	        //this.setState({ cryptos: cryptos });
+	        this.setState({ cryptos: cryptoPrices });
 		      
 		});
 	});
@@ -159,12 +190,6 @@ class AddCoins extends Component {
 	      });
 	}; // close getCurrentPriceData = () => {*/
 
-	
-
-
-
-}
-
-
+} // closes class AddCoins extends Component 
 
 export default AddCoins;
