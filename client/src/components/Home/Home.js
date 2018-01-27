@@ -31,6 +31,7 @@ class Home extends Component {
       	labels: [],
       	dataset: [{
       		label: 'Bitcoin Trading History - Last 24 Hours',
+      		borderColor: "black",
       		data: []
       	}]
       }      
@@ -127,6 +128,8 @@ class Home extends Component {
 		        		labels: arrayTime,
 		        		datasets: [
 		        			{
+		        			borderColor: "black",
+		        			pointHoverBackgroundColor: "yellow",
 		        			label: false,	
 		        			data: arrayPrice
 		        		}]
